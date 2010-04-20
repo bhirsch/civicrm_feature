@@ -8,6 +8,4 @@ include_once('civicrm_feature.features.inc');
 function civicrm_feature_menu_alter(&$items) {
   $items['civicrm']['access callback'] = 'spaces_access_feature';
   $items['civicrm']['access arguments'] = array('view', 'civicrm_feature');
-  $items['type'] = MENU_NORMAL_ITEM;
-  $items['menu_name'] = 'features';
 }
