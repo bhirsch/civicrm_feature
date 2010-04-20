@@ -27,6 +27,24 @@ function _civicrm_feature_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
+        'civicrm-2' => array(
+          'module' => 'civicrm',
+          'delta' => 2,
+          'region' => 'right',
+          'weight' => 0,
+        ),
+        'civicrm-4' => array(
+          'module' => 'civicrm',
+          'delta' => 4,
+          'region' => 'right',
+          'weight' => 1,
+        ),
+        'civicrm-7' => array(
+          'module' => 'civicrm',
+          'delta' => 7,
+          'region' => 'right',
+          'weight' => 2,
+        ),
         'civicrm-8' => array(
           'module' => 'civicrm',
           'delta' => 8,
@@ -34,7 +52,7 @@ function _civicrm_feature_context_default_contexts() {
           'weight' => 0,
         ),
       ),
-      'layout' => 'login',
+      'layout' => 'default',
     ),
   );
   $context->condition_mode = 0;

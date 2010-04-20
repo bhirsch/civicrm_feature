@@ -6,6 +6,37 @@ include_once('civicrm_feature.features.inc');
  * Implementation of hook_menu_alter().
  */
 function civicrm_feature_menu_alter(&$items) {
-  $items['civicrm']['access callback'] = 'spaces_access_feature';
+  // $items['civicrm']['access callback'] = 'spaces_access_feature';
+  $items['civicrm']['access callback'] = 'civicrm_feature_menu_validate';
   $items['civicrm']['access arguments'] = array('view', 'civicrm_feature');
+}
+// */
+
+/**
+ * Callback for menu $items['civicrm']
+ */
+function civicrm_feature_menu_validate($params) {
+  $validate = FALSE;
+
+  // verify user access to CiviCRM
+  if (user_access('access CiviCRM')) {
+
+    // Use this to determine whether CiviCRM icon appears in features menu
+    $validate = spaces_access_feature('view', 'civicrm_feature');
+
+    // the path mywebsite.com/civicrm/anything needs to work for 
+    // internal civiCRM callbacks (for all the ajax stuff to work)
+    if (arg(1)) {
+      $validate = TRUE;
+    }
+  }
+
+  return $validate;
+}
+
+/**
+ * Implementation of hook_init().
+ */
+function civicrm_feature_init() {
+  drupal_add_css(drupal_get_path('module', 'civicrm_feature') .'/civicrm_feature.css');
 }
